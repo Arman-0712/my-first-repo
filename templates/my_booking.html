@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}My Bookings{% endblock title %}
+{% block body %}
+
+<div class="container my-5">
+  <h2 class="mb-4">My Bookings</h2>
+
+  {% if bookings %}
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th>Service</th>
+        <th>Preferred Date & Time</th>
+        <th>Booked At</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for booking in bookings %}
+      <tr>
+        <td>{{ booking.service.name }}</td>
+        <td>{{ booking.preferred_datetime|date:"d M Y, H:i" }}</td>
+        <td>{{ booking.booked_at|date:"d M Y, H:i" }}</td>
+        <td>
+          {% if booking.status == 'Pending' %}
+            <span class="badge bg-warning text-dark">{{ booking.status }}</span>
+          {% elif booking.status == 'Confirmed' %}
+            <span class="badge bg-primary">{{ booking.status }}</span>
+          {% elif booking.status == 'Completed' %}
+            <span class="badge bg-success">{{ booking.status }}</span>
+          {% elif booking.status == 'Cancelled' %}
+            <span class="badge bg-danger">{{ booking.status }}</span>
+          {% endif %}
+        </td>
+        <td>
+          {% if booking.status not in "Completed,Cancelled" %}
+          <a href="{% url 'update_booking' booking.id %}" class="btn btn-sm btn-info">Change Date</a>
+          <a href="{% url 'cancel_booking' booking.id %}" class="btn btn-sm btn-danger">Cancel</a>
+          {% else %}
+          <span class="text-muted">No Actions</span>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+    <p>You have no bookings yet.</p>
+  {% endif %}
+</div>
+
+{% endblock body %}

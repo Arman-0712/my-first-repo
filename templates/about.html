@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% block title %}About Us{% endblock title %}
+{% block body %}
+
+<!-- Custom Styles -->
+<style>
+  .about-section {
+    background: #f8f9fa;
+    padding: 3rem 2rem;
+    border-radius: 0.5rem;
+  }
+  .about-heading {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #444;
+    display: inline-block;
+    padding-bottom: 5px;
+  }
+  .team-card img {
+    height: 220px;
+    object-fit: cover;
+    border-radius: 0.5rem 0.5rem 0 0;
+  }
+</style>
+
+<!-- About Section -->
+<div class="container my-5">
+  <div class="about-section shadow-sm">
+    <h2 class="about-heading">Who We Are</h2>
+    <p class="lead">
+      Welcome to <strong>HouseHold Service</strong>, your trusted partner for all 
+      home service needs. We believe in delivering professional, reliable, 
+      and affordable solutions — from cleaning and plumbing to painting, 
+      electrical work, and appliance repair.
+    </p>
+    <p>
+      Our mission is simple: to make your home a better place by providing 
+      services with integrity, quality, and care. Whether it’s a small fix or 
+      a big project, our expert team ensures your satisfaction every time.
+    </p>
+  </div>
+</div>
+
+<!-- Our Values -->
+<div class="container my-5">
+  <h2 class="about-heading">Our Values</h2>
+  <div class="row text-center">
+    <div class="col-md-4 mb-4">
+      <i class="bi bi-shield-check display-4 text-primary"></i>
+      <h5 class="mt-3">Trust & Reliability</h5>
+      <p>We ensure dependable services you can count on, always delivered on time.</p>
+    </div>
+    <div class="col-md-4 mb-4">
+      <i class="bi bi-award display-4 text-success"></i>
+      <h5 class="mt-3">Quality Work</h5>
+      <p>Our professionals are trained to deliver the highest standard of service.</p>
+    </div>
+    <div class="col-md-4 mb-4">
+      <i class="bi bi-heart display-4 text-danger"></i>
+      <h5 class="mt-3">Customer Care</h5>
+      <p>Your comfort and satisfaction are at the heart of everything we do.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Meet the Team -->
+<div class="container my-5">
+  <h2 class="about-heading">Meet Our Team</h2>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+
+    <div class="col">
+      <div class="card team-card shadow-sm h-100 text-center">
+        <img src="/static/img/team1.jpg" class="card-img-top" alt="Arman Khan">
+        <div class="card-body">
+          <h5 class="card-title">Arman Khan</h5>
+          <p class="card-text">Founder & CEO</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card team-card shadow-sm h-100 text-center">
+        <img src="/static/img/team2.jpg" class="card-img-top" alt="Shruti Kakade">
+        <div class="card-body">
+          <h5 class="card-title">Shruti Kakade</h5>
+          <p class="card-text">Operations Manager</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card team-card shadow-sm h-100 text-center">
+        <img src="/static/img/team3.jpg" class="card-img-top" alt="Aniket Gund">
+        <div class="card-body">
+          <h5 class="card-title">Aniket Gund</h5>
+          <p class="card-text">Lead Technician</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card team-card shadow-sm h-100 text-center">
+        <img src="/static/img/team4.jpg" class="card-img-top" alt="Sandip Kadam">
+        <div class="card-body">
+          <h5 class="card-title">Sandip Kadam</h5>
+          <p class="card-text">Customer Support Head</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock body %}

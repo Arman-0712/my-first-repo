@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us | HouseHold Services
+{% endblock title %}
+
+{% block body %}
+
+<style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .contact-info {
+      background-color: #f8f9fa;
+    }
+    .form-control, .btn {
+      border-radius: 0.375rem;
+    }
+    .hero-img {
+        width: 100%;
+        height: 592px;
+        object-fit: cover;
+    }
+
+    @media (max-width: 767px) {
+      .hero-img {
+        height: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Banner Image with Fixed Height (592px) -->
+<div class="container-fluid px-0">
+  <img src="static/img/contact-us.jpg"
+       class="w-100 d-block object-fit-cover"
+       style="height: 592px;"
+       alt="Contact Us Banner" />
+</div>
+
+
+<!-- Contact Section -->
+<section class="py-5">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold">Contact Us</h2>
+      <p class="text-muted">We’re here to help with all your household needs. Reach out today!</p>
+    </div>
+
+    <div class="row g-4">
+      <!-- Contact Form -->
+      <div class="col-lg-7 col-md-12">
+        <form action="/contact" method="POST" class="bg-white p-4 shadow rounded">
+        {% csrf_token %}
+          <div class="mb-3">
+            <label for="name" class="form-label">Full Name</label>
+            <input type="text" class="form-control" id="name" name="name" required />
+          </div>
+
+          <div class="mb-3">
+            <label for="email" class="form-label">Email Address</label>
+            <input type="email" class="form-control" id="email" name="email" required />
+          </div>
+
+          <div class="mb-3">
+            <label for="phone" class="form-label">Phone Number</label>
+            <input type="tel" class="form-control" id="phone" name="phone" />
+          </div>
+
+          <div class="mb-3">
+            <label for="message" class="form-label">Your Message</label>
+            <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100">Send Message</button>
+        </form>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="col-lg-5 col-md-12">
+        <div class="contact-info p-4 shadow rounded">
+          <h5>Contact Information</h5>
+          <p class="mb-2"><strong>Phone:</strong> +1 (123) 456-7890</p>
+          <p class="mb-2"><strong>Email:</strong> support@householdservices.com</p>
+          <p class="mb-2"><strong>Address:</strong> 123 Clean Street, Sparkle City, CA 90210</p>
+
+          <h6 class="mt-4">Business Hours</h6>
+          <p>Mon - Sat: 8:00 AM - 6:00 PM<br/>Sun: Closed</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Google Maps Embed -->
+    <div class="mt-5">
+      <h5 class="text-center mb-3">Find Us on the Map</h5>
+      <div class="ratio ratio-16x9">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18..."
+          style="border:0;" allowfullscreen="" loading="lazy">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+{% endblock body %}

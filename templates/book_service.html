@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% block title %}Book Service{% endblock title %}
+{% block body %}
+
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-sm border-0">
+        <div class="card-header bg-dark text-white text-center">
+          <h4>Book a Service</h4>
+        </div>
+        <div class="card-body">
+
+          <!-- Success message after booking -->
+          {% if success %}
+          <div class="alert alert-success text-center">
+            You have successfully booked the service: <strong>{{ booked_service }}</strong>!
+          </div>
+          {% endif %}
+
+          <!-- Booking Form -->
+          <form method="POST">
+            {% csrf_token %}
+
+            <!-- Full Name -->
+            <div class="mb-3">
+                <label class="form-label">Full Name</label>
+                <input type="text" class="form-control" name="full_name" placeholder="Enter your full name" required />
+            </div>
+
+            <!-- Phone -->
+            <div class="mb-3">
+              <label class="form-label">Phone Number</label>
+              <input type="tel" class="form-control" name="phone" placeholder="Enter your phone" required />
+            </div>
+
+            <!-- Address -->
+            <div class="mb-3">
+              <label class="form-label">Address</label>
+              <textarea class="form-control" name="address" rows="3" placeholder="Enter your address" required></textarea>
+            </div>
+
+            <!-- Service (readonly) -->
+            <div class="mb-3">
+              <label class="form-label">Service</label>
+              <input type="text" class="form-control" value="{{ service.name }}" readonly />
+            </div>
+
+            <!-- Preferred Date & Time -->
+            <div class="mb-3">
+              <label class="form-label">Preferred Date & Time</label>
+              <input type="datetime-local" class="form-control" name="preferred_datetime" required />
+            </div>
+
+            <button type="submit" class="btn btn-success w-100">Confirm Booking</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Booking History -->
+  {% if booking_history %}
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-10">
+      <h5>Your Booking History</h5>
+      <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+          <tr>
+            <th>Service</th>
+            <th>Preferred Date & Time</th>
+            <th>Booked At</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for booking in booking_history %}
+          <tr>
+            <td>{{ booking.service.name }}</td>
+            <td>{{ booking.preferred_datetime|date:"d M Y, H:i" }}</td>
+            <td>{{ booking.booked_at|date:"d M Y, H:i" }}</td>
+            <td>
+              {% if booking.status == 'Pending' %}
+                <span class="badge bg-warning text-dark">{{ booking.status }}</span>
+              {% elif booking.status == 'Completed' %}
+                <span class="badge bg-success">{{ booking.status }}</span>
+              {% elif booking.status == 'Cancelled' %}
+                <span class="badge bg-danger">{{ booking.status }}</span>
+              {% else %}
+                <span class="badge bg-secondary">{{ booking.status }}</span>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% endif %}
+
+</div>
+
+{% endblock body %}

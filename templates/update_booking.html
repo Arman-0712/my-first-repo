@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Update Booking{% endblock title %}
+{% block body %}
+
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-sm border-0">
+        <div class="card-header bg-dark text-white text-center">
+          <h4>Update Booking</h4>
+        </div>
+        <div class="card-body">
+          <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label class="form-label">Preferred Date & Time</label>
+              <input type="datetime-local" class="form-control" 
+                     name="preferred_datetime"
+                     value="{{ booking.preferred_datetime|date:'Y-m-d\\TH:i' }}" required />
+            </div>
+            <button type="submit" class="btn btn-success w-100">Update</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock body %}
